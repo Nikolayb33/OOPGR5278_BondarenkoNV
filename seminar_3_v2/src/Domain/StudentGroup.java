@@ -2,7 +2,7 @@ package Domain;
 import java.util.Iterator;
 import java.util.List;
 
-public class StudentGroup implements Iterable<Student>{
+public class StudentGroup implements Iterable<Student>, Comparable<StudentGroup>{
 
     // field
     private List<Student> group;
@@ -34,6 +34,10 @@ public class StudentGroup implements Iterable<Student>{
         this.idGroup = idGroup;
     }
 
+    public int getSizeOfGroup(){
+        return group.size();
+    }
+
     @Override
     public String toString() {
         return "StudentGroup{" +
@@ -49,6 +53,27 @@ public class StudentGroup implements Iterable<Student>{
         return new StudentIterator(group);
     }
 
+
+    // группы отсортированы по количеству студенов
+        // чем больше студентов в группе тем выше в очереди
+        // если равное количество студентов то чем меньше id группы тем выше в очереди
+    @Override
+    public int compareTo(StudentGroup o) {
+        // TODO Auto-generated method stub
+        System.out.println(getIdGroup() + " - " + o.getIdGroup());
+        if(getSizeOfGroup() == o.getSizeOfGroup()){
+            if (idGroup == o.idGroup) return 0;
+            if (idGroup > o.idGroup) return 1;
+            else return -1;
+        }
+        if(getSizeOfGroup() < o.getSizeOfGroup())
+        return 1;
+        else
+        return -1;
+    }
+
+
+// переписали в отдельном классе StudentIterator(можно убрать что написано ниже)
     // @Override
     // public Iterator<Student> iterator() {
     //    return new Iterator<Student>() {
