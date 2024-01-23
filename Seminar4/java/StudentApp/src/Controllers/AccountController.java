@@ -13,7 +13,7 @@ public class AccountController {
     {
         System.out.println(person.getName()  + " выплачена зарплата "+salar);
     }
-// add static method for output average age of all Person
+// add static method for output average age of some Person
     public static <T extends Person> void averageAge(List<Person> listOfPerson){
         Integer sum = 0;
         for (Person person : listOfPerson) {

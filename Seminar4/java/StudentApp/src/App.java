@@ -1,13 +1,17 @@
 
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import Controllers.AccountController;
 import Domain.Employee;
+import Domain.Person;
 import Domain.Student;
 import Domain.StudentGroup;
 import Domain.Teacher;
+import Services.iPersonService;
+import Services.TeacherService;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -57,6 +61,24 @@ public class App {
         AccountController.paySalary(t1, 50000);
         AccountController.paySalary(e1, 50000);
         //AccountController.paySalary(s1, 50000);
+        System.out.println("=========================================================");
+// hw4_1
+        Teacher t10 = new Teacher("Иван Иваныч", 45, "phd");
+        Teacher t11 = new Teacher("Игорь Игоревич", 43, "phd");
+        Teacher t12 = new Teacher("Иван Игоревич", 42, "phd");
+        Teacher t13 = new Teacher("Игорь Иванович",  53, "phd");
+        Teacher t14 = new Teacher("Дарья Ивановна",  73, "phd");
+        Teacher t15 = new Teacher("Елена Игоревна",  63, "phd");
+
+        // Teacher.getAll();
+
+        System.out.println("=========================================================");
+// hw4_2
+        List<Person> listOfPerson_1 = new ArrayList<>();
+        listOfPerson_1.add(e1);
+        listOfPerson_1.add(t1);
+
+        AccountController.averageAge(listOfPerson_1);
 
     }
 }
