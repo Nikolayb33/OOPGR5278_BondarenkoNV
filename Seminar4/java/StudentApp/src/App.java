@@ -69,6 +69,5 @@ public class App {
         listOfPerson_1.add(t1);
 
         AccountController.averageAge(listOfPerson_1);
-
     }
 }
