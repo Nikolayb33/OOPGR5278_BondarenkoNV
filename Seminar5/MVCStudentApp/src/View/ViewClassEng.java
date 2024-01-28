@@ -2,17 +2,18 @@ package View;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.HashMap;
 
-import Controller.ControllerClass;
 import Controller.Interfaces.iGetController;
 import Controller.Interfaces.iGetView;
 import Model.Domain.Student;
 
-public class ViewClass implements iGetView {
+public class ViewClassEng implements iGetView{
 
     /*
      * добавляем поле contr из интерфейса iGetController
      */
+    
     private iGetController contr;
 
     /*
@@ -21,19 +22,20 @@ public class ViewClass implements iGetView {
     public void setContr(iGetController contr) {
         this.contr = contr;
     }
+
     /*
     * метод из интерфейса iGetView, выводящий  консоль студентов
     */
-    public void printAllStudent(List<Student> students)
-    {
-        System.out.println("-------------Список студентов------------");
+    
+    public void printAllStudent(List<Student> students) {
+        System.out.println("-------------List of students------------");
         for(Student s: students)
         {
             System.out.println(s);
         }
         System.out.println("----------------------------------------");
     }
-
+    
     /*
     * метод из интерфейса iGetView
     */
@@ -49,46 +51,44 @@ public class ViewClass implements iGetView {
     public void ViewRun()
     {
         contr.run();
-    }
-
+    } 
 
     /*
     * метод из интерфейса iGetView запрашивающий номер студента на удаление
     */
     
     public int studentNumbertoDelete(){
-        System.out.println("Введите id студента на удаленеие");
+        System.out.println("Enter id of student for delete");
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();
-        // System.out.println(num);
         return num;
     }
+
     /*
-     * добавляю методы для вывода на Русском языке
+     * добавляю методы для вывода на Английском языке
      */
     public String enterNextCommand(){
-        String a = "Введите команду";
+        String a = "Enter next command";
         return a;
     }
 
     public String listOfStudentsEmpty()
     {
-        String a = "Список студентов пуст!";
+        String a = "List of students empty";
         return a;
     }
 
     public String exitFromProgram()
     {
-        String a = "Выход из программы";
+        String a = "Exit from the program";
         return a;
     }
 
     public String studentNotExist()
     {
-        String a = "Нет такого студента";
+        String a = "Student doesn`t exist";
         return a;
     }
 
-
-
-}
+}   
+    

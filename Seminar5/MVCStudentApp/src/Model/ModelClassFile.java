@@ -64,5 +64,8 @@ public class ModelClassFile implements iGetModel {
             System.out.println(e.getMessage());
         }
     }
-    
+    // Недописано. Сделал заглушку, чтобы работало со списками и словарем
+    public void deleteStudent(Student studentToDelete){
+        
+    }
 }
