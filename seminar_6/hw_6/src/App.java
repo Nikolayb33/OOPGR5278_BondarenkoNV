@@ -244,20 +244,21 @@ public class App {
             return this.width * this.height;
         }
     }
+
     /*
      * класс делаем таким же как и его родителя (чтобы можно было использовать,
-     *  где можно использовать родителя)
+     * где можно использовать родителя)
      */
     public class Square extends Rectangle {
         @Override
         public void setWidth(int width) {
             super.width = width;
-            //super.height = width;
+            // super.height = width;
         }
 
         @Override
         public void setHeight(int height) {
-            //super.width = height;
+            // super.width = height;
             super.height = height;
         }
 
@@ -266,5 +267,72 @@ public class App {
             return super.width * super.height;
         }
     }
+
+    // 5) Переписать код в соответствии с Dependency Inversion Principle:
+    /*
+     * машина с бензиновым двигателем
+     */
+    public class CarP {
+        private PetrolEngine engine;
+
+        public CarP(PetrolEngine engine) {
+            this.engine = engine;
+        }
+
+        public void start() {
+            this.engine.start();
+        }
+    }
+    /*
+     * машина с дизельным двигателем
+     */
+    public class CarD {
+        private DieselEngine engine;
+
+        public CarD(DieselEngine engine) {
+            this.engine = engine;
+        }
+
+        public void start() {
+            this.engine.start();
+        }
+    }
+    /*
+     * разрываем связь через интерфейс
+     */
+    public interface iEngine {
+        public void start();
+    }
+
+    /*
+     * создаем объект бензинового двигателя, объект реализует интерфейс двигателя
+     */
+    public class PetrolEngine implements iEngine{
+
+        @Override
+        public void start() {
+        }
+        
+    }
+
+
+    /*
+     * создаем объект дизельного двигателя, объект реализует интерфейс двигателя
+     */
+
+    public class DieselEngine implements iEngine{
+
+        @Override
+        public void start() {
+        }
+        
+    }
+
+    // Разорвать зависимость
+    // классов Car
+    // и PetrolEngine.
+    // У машины
+    // же может
+    // быть DieselEngine.
 
 }
