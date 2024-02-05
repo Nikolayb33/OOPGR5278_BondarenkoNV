@@ -18,12 +18,19 @@ public class Decorator implements iCalculator{
     public String run() {
         // TODO Auto-generated method stub
         // throw new UnsupportedOperationException("Unimplemented method 'run'");
-        log.log("Начало записи");//начало записи
-        old_calc.run();// запускаем сценарий
-        log.log("Результат получен");// конец записи
-        return ""; // сообщение, что лог записан
+        log.log("_______СТАРТ_________");//начало записи
+        String result = old_calc.run();// запускаем сценарий
+        if (result == "Ошибка оператора"){
+            log.log("____________ОШИБКА ОПЕРАТОРА__________");
+            return "";
+        }
+        if (result == "Ошибка"){
+            log.log("____________ОШИБКА ОПЕРАНДА__________");
+            return "";
+        }
+        else{
+        log.log("________КОНЕЦ ЗАПИСИ__________");
+        return "";// конец записи
+        }
     }
-
-
-    
 }

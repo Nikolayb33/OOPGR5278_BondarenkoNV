@@ -7,7 +7,6 @@ import java.util.List;
 import Controllers.Interfaces.iCalculator;
 import Controllers.Interfaces.iView;
 import Modules.Domain.ComplexNum;
-import java.util.Scanner;
 
 public class ViewCalc implements iView{
 
@@ -26,67 +25,95 @@ public class ViewCalc implements iView{
     public String operator() {
         System.out.println("Введите оператор +, *, /");
         String op = System.console().readLine();
-        if (op.equals("+") || op.equals("*") || op.equals("/"))  {
+        if (op.equals("+") == true || op.equals("*") == true || op.equals("/") == true)  {
             return op;
         }
         else {
-            return "Введен не правильный запрос";
+            return "Ошибка оператора";
         }
+    }
+
+
+    // ввод первого числа
+    public List<Integer> inputFirstOperand(){
+        List<Integer> cmp = new ArrayList<>();
+    
+        System.out.println("Введите первое комплексное число. Формат ввода:a +bi");
+        String complex_1 = System.console().readLine();
+        for (String s: complex_1.split(" ")){
+            if (s.endsWith("i")){
+                String b = s.replace("i", "");
+                
+                try {
+                    Integer c = Integer.parseInt(b);
+                    cmp.add(c);    
+                } catch (NumberFormatException e) {
+                    break;
+                }
+                
+            }
+            else{
+                try {
+                    Integer b = Integer.parseInt(s);
+                    cmp.add(b);    
+                } catch (NumberFormatException e) {
+                    break;
+                }      
+            }
+        }
+        return cmp;    
     }
 
     // получение первого комплексного числа
     @Override
-    public ComplexNum firstOperand() {
-        System.out.println("Введите первое комплексное число. Формат ввода:4 + 2i");
+    public ComplexNum firstOperand(List<Integer> cmp) {
+        Integer actualOperand = cmp.getFirst();
+        Integer imaginaryOperand = cmp.getLast();
+        ComplexNum first_operand = new ComplexNum(actualOperand, imaginaryOperand);
+    return first_operand;
+}
+
+    // ввод второго числа
+    public List<Integer> inputSecondOperand(){
+        List<Integer> cmp = new ArrayList<>();
+    
+        System.out.println("Введите второе комплексное число. Формат ввода:a +bi");
         String complex_1 = System.console().readLine();
-        List<String> cmp = new ArrayList<>();
         for (String s: complex_1.split(" ")){
-            
             if (s.endsWith("i")){
                 String b = s.replace("i", "");
-                cmp.add(b);
+                
+                try {
+                    Integer c = Integer.parseInt(b);
+                    cmp.add(c);    
+                } catch (NumberFormatException e) {
+                    break;
+                }
+                
             }
             else{
-                cmp.add(s);
+                try {
+                    Integer b = Integer.parseInt(s);
+                    cmp.add(b);    
+                } catch (NumberFormatException e) {
+                    break;
+                }      
             }
-            
         }
-
-        String actualOperand_s = cmp.getFirst();
-        int actualOperand = Integer.parseInt(actualOperand_s);
-        String imaginaryOperand_s = cmp.get(1) + cmp.get(2);
-        int imaginaryOperand = Integer.parseInt(imaginaryOperand_s);
-        ComplexNum first_operand = new ComplexNum(actualOperand, imaginaryOperand);
-        return first_operand;
+        return cmp;    
     }
-
     // получение второго комплексного числа
     @Override
-    public ComplexNum secondOperand() {
-        System.out.println("Введите второе комплексное число. Формат ввода:4 + 2i");
-        String complex_2 = System.console().readLine();
-        List<String> cmp = new ArrayList<>();
-        for (String s: complex_2.split(" ")){
-            if (s.endsWith("i")){
-                String b = s.replace("i", "");
-                cmp.add(b);
-            }
-            else{
-                cmp.add(s);
-            }
-        }
-
-        String actualOperand_s = cmp.getFirst();
-        int actualOperand = Integer.parseInt(actualOperand_s);
-        String imaginaryOperand_s = cmp.get(1) + cmp.get(2);
-        int imaginaryOperand = Integer.parseInt(imaginaryOperand_s);
+    public ComplexNum secondOperand(List<Integer> cmp) {
+        int actualOperand = cmp.getFirst();
+        int imaginaryOperand = cmp.getLast();
         ComplexNum second_operand = new ComplexNum(actualOperand, imaginaryOperand);
         return second_operand;
     }
 
     @Override
     public String result(ComplexNum cNum) {
-        System.out.println("-----------------------------");
+        System.out.println("-----------------------------\nРезультат равен:");
         
         return cNum.toString();
     }

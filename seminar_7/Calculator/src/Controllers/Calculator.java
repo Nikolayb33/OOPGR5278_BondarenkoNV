@@ -1,5 +1,7 @@
 package Controllers;
 
+import java.util.List;
+
 import Controllers.Interfaces.iCalculator;
 import Controllers.Interfaces.iView;
 import Modules.ComplexDel;
@@ -23,9 +25,22 @@ public class Calculator implements iCalculator{
     //методы
     @Override
     public String run() {
+        String fail = "Ошибка";
         String op = view.operator();
-        ComplexNum frst = view.firstOperand();
-        ComplexNum scnd = view.secondOperand();
+        if (op == "Ошибка оператора"){
+            return op;
+        }
+        
+        List<Integer> cmp = view.inputFirstOperand();
+        if (cmp.size() <= 1){
+            return fail;
+        }
+        ComplexNum frst = view.firstOperand(cmp);
+        List<Integer> cmp2 = view.inputSecondOperand();
+        if (cmp2.size() <= 1){
+            return fail;
+        }
+        ComplexNum scnd = view.secondOperand(cmp2);
         if (op.equals("+")){
             iModels sum = new ComplexSum();
             ComplexNum result_R = sum.calculate(frst, scnd);
@@ -43,7 +58,6 @@ public class Calculator implements iCalculator{
             return view.result(result_R);
         }
         else {
-            String fail = "Ошибка";
             return fail;
         }
     }

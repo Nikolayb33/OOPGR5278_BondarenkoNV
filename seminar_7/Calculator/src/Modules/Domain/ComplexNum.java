@@ -15,7 +15,7 @@ public class ComplexNum {
     public ComplexNum(int actualPart, int imaginaryPart) {
         this.actualPart = actualPart;
         this.imaginaryPart = imaginaryPart;
-        if (this.imaginaryPart > 0){
+        if (this.imaginaryPart >= 0){
             this.operator = "+";
             
         }
@@ -55,7 +55,7 @@ public class ComplexNum {
     // вывод в строку
     @Override
     public String toString() {
-        return System.out.printf("%d %s %di\n", this.actualPart, this.operator, Math.abs(this.imaginaryPart)).toString();
+        return System.out.printf("%d %s%di\n", this.actualPart, this.operator, Math.abs(this.imaginaryPart)).toString();
     }    
 
     
