@@ -1,16 +1,9 @@
 package Controllers.Interfaces;
+
 public interface iCalculator {
-    
-    /*
-     * сложение
-     */
 
-     /*
-     * умножение
-     */
+    // метод контроллера
+    public String run();
 
-     /*
-     * деление
-     */
-    
 }
+    
